@@ -13,8 +13,10 @@ pub fn parameter<'a>(s: ParserSpan<'a>) -> ParseResult<'a, Parameter> {
         return Ok((
             s,
             Parameter {
-                name: String::from(*name.fragment()),
-                particle: String::from(*particle.fragment()),
+                name: ParticledName {
+                    name: String::from(*name.fragment()),
+                    particle: String::from(*particle.fragment()),
+                },
             },
         ));
     })(s)

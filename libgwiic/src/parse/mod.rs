@@ -1,3 +1,4 @@
+mod atom;
 mod base;
 mod decl;
 mod frag;
@@ -7,6 +8,7 @@ use crate::core::Spanned;
 use nom::IResult;
 use nom_locate::LocatedSpan;
 
+pub(crate) use atom::*;
 pub(crate) use frag::*;
 pub(crate) use gwii::parse_gwii;
 
@@ -21,6 +23,7 @@ pub(crate) mod prelude {
     pub(crate) use crate::parse::base::*;
     pub(crate) use nom::branch::alt;
     pub(crate) use nom::bytes::complete::{take, take_until, take_while1};
+    pub(crate) use nom::character::complete::one_of;
     pub(crate) use nom::combinator::all_consuming;
     pub(crate) use nom::multi::{many0, separated_list};
     pub(crate) use nom::sequence::preceded;

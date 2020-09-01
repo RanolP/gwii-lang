@@ -2,7 +2,7 @@ use crate::parse::prelude::*;
 
 pub fn parse_verb_decl<'a>(s: ParserSpan<'a>) -> ParseResult<'a, Decl> {
     Spanned::wrap(|s| {
-        let (s, is_extern) = opt(tag("바깥"))(s)?;
+        let (s, is_extern) = opt(tag("바깥"))(s);
         let is_extern = is_extern.is_some();
 
         let s = multispace(s);

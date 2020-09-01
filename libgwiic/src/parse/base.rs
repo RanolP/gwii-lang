@@ -13,13 +13,13 @@ where
     nom_tag(input)
 }
 
-pub(crate) fn opt<'a, F, R>(f: F) -> impl Fn(ParserSpan<'a>) -> ParseResultNaked<'a, Option<R>>
+pub(crate) fn opt<'a, F, R>(f: F) -> impl Fn(ParserSpan<'a>) -> (ParserSpan<'a>, Option<R>)
 where
     F: Fn(ParserSpan<'a>) -> ParseResultNaked<'a, R>,
 {
     move |s| match f(s) {
-        Ok((s, r)) => Ok((s, Some(r))),
-        Err(_) => Ok((s, None)),
+        Ok((s, r)) => (s, Some(r)),
+        Err(_) => (s, None),
     }
 }
 
